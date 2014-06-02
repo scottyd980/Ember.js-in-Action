@@ -19,6 +19,23 @@
 		<script src="js/scripts/ember-data.min.js"></script>
 		<script src="js/scripts/localstorage_adapter.js"></script>
 		<script src="js/app/app.js"></script>
+		
+		<script type="text/x-handlebars" id="notes">
+			<div id="notes" class="azureBlueBackground azureBlueBorderThin">
+				{{input valueBinding="newNoteName"}}
+				<button class="btn btn-default btn-xs" {{action "createNewNote"}}>New Note</button>
+			</div>
+
+			<div class="list-group" style="margin-top: 10px;">
+				{{#each controller}}
+					<div class="list-group-item">
+						{{name}}
+					</div>
+				{{/each}}
+			</div>
+		</script>
+
+
 
 	</head>
 	<body>
