@@ -19,6 +19,7 @@ Notes.NotesNoteRoute = Ember.Route.extend({
 });
 
 Notes.NotesController = Ember.ArrayController.extend({
+	needs: ['notesNote'],
 	newNoteName: null,
 	actions: {
 		createNewNote: function() {
@@ -42,6 +43,44 @@ Notes.NotesController = Ember.ArrayController.extend({
 				this.set('newNoteName', null);
 			} else {
 				alert('Note must have a unique name of at least 2 characters.');
+			}
+		},
+
+		doDeleteNote: function(note) {
+			this.set('noteForDeletion', note);
+			$('#confirmDeleteNoteDialog').modal('show');
+		},
+
+		doCancelDelete: function() {
+			this.set('nodeForDeletion', null);
+			$('#confirmDeleteNoteDialog').modal('hide');
+		},
+
+		doConfirmDelete: function() {
+			var selectedNote = this.get('noteForDeletion');
+			this.set('noteForDeletion', null);
+			if( selectedNote ) {
+				this.store.deleteRecord(selectedNote);
+				selectedNote.save();
+
+				if( this.get('controllers.notesNote.model.id') === selectedNote.get('id')) {
+					this.transitionToRoute('notes');
+				}
+
+			}
+
+			$('#confirmDeleteNoteDialog').modal('hide');
+		}
+	}
+});
+
+Notes.NotesNoteController = Ember.ObjectController.extend({
+	actions: {
+		updateNote: function() {
+			var content = this.get('content');
+			console.log(content);
+			if(content) {
+				content.save();
 			}
 		}
 	}
