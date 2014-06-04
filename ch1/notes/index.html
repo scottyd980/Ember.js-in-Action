@@ -29,6 +29,9 @@
 					{{#each controller}}
 							{{#link-to "notes.note" this class="list-group-item"}}
 								{{name}}
+								{{#if introduction}}
+									<br/>{{introduction}}
+								{{/if}}
 
 								<button class="btn btn-danger btn-xs pull-right" {{action "doDeleteNote" this}}>Delete</button>
 							{{/link-to}}

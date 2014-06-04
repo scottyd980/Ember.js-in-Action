@@ -98,7 +98,7 @@ Notes.Note = DS.Model.extend({
 		var intro = "";
 
 		if( this.get('value') ) {
-			intro = this.get('value').substring(0, 20);
+			intro = this.get('value').substring(0, 15);
 		}
 
 		return intro;
