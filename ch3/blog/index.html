@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+<html lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+		<title>Ember.js in Action Blog</title>
+
+		<!-- CSS -->
+		<link rel="stylesheet" href="css/app.css" type="text/css" charset="utf-8">
+
+		<!-- JS -->
+		<script src="js/scripts/jquery-1.11.1.min.js"></script>
+		<script src="js/scripts/handlebars-v1.3.0.js"></script>
+		<script src="js/scripts/ember.min.js"></script>
+		<script src="js/scripts/ember-data.min.js"></script>
+		<script src="js/scripts/localstorage_adapter.js"></script>
+		<script src="js/app/app.js"></script>
+		
+		<script type="text/x-handlebars" id="application">
+			<div id="mainArea">
+				<h1>Ember.js in Action Blog</h1>
+
+				{{outlet}}
+			</div>
+		</script>
+
+		<script type="text/x-handlebars" id="blog">
+			<div id="blogsArea">
+				{{#each controller}}
+					<h1>{{postTitle}}</h1>
+					<div class="postDate">{{postDate}}</div>
+					{{postLongIntro}}<br/>
+
+					<hr class="blogSeparator" />
+				{{/each}}
+			</div>
+		</script>
+
+	</head>
+	<body>
+
+	</body>
+</html>
